@@ -1,0 +1,34 @@
+
+=head1 NAME
+
+Sledge::MobileGate::Doc::FAQ - Sledge::MobileGate FAQ
+
+=head1 DESCRIPTION
+
+Sledge::MobileGate よくある質問と答え
+
+=head1 QUESTIONS
+
+=head2 DOWNLOAD
+
+=over 4
+
+=item Q.
+
+ダウンロードが失敗する端末がある。
+
+=item A.
+
+そのとき呼ばれた、uri ($self->r->uri)の末尾が
+.mld .mmf .pmd .gif .jpg .qcp .png の場合は自動的に正しい MIME type
+を付加しますが、判断がつかない場合は "application/x-up-download"
+になります。
+
+"application/x-up-download" だと正しくダウンロード出来ない端末もあるよう
+ですので download メソッドに適切な content-type を渡してください。
+
+  $self->mobile->download($content, "application/x-smaf");
+
+=back
+
+=cut

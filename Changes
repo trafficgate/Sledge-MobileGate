@@ -1,0 +1,90 @@
+Revision history for Perl extension Sledge::MobileGate
+
+0.09 Fri Jan 28 16:32:58 2005
+	- 半角文字化け
+	  Sledge::MobileGate::Filter 0.07
+
+0.08 Fri Sep 10 16:45:39 2004
+	- モバイルのエージェントじゃなかったら半角フィルターを
+	  通さないようにした。
+	  Sledge::MobileGate::Filter 0.06
+
+0.07 Thu Mar 25 16:14:59 2004
+	- 全角のアスキー文字も半角に変換するようにした。
+	  Sledge::MobileGate::Filter 0.05
+
+	- Vodafoneの端末固有IDをシリアルナンバーから HTTP_X_JPHONE_UID に
+	  変更しました。
+	  http://specters.net/cgipon/labo/c_env.cgi?c=j&e=HTTP_X_JPHONE_UID
+	  Sledge::MobileGate::Mobile 0.02
+
+	- $self->mobile->id で ezweb の場合 環境変数から取得していたが
+	  $self->r->header_in('x-up-subno') から取得するようにした。
+	  Sledge::MobileGate::Mobile 0.02
+
+0.06 Tue Feb 24 12:51:55 2004
+	- downlowd メソッドは URI の末尾から拡張子を判断し、mime type
+	  を設定しているため、QUERY_STRING を無視していました。
+	  これを URL(QUERY_STRING 含む)から判断するようにしました。
+	  Sledge::MobileGate::Mobile::Download 0.04
+
+0.05 Fri Feb 20 12:38:34 2004
+	- download メソッドが 着うた(ezweb)系の拡張子(amc, 3g2)に対応しました。
+	  Sledge::MobileGate::Mobile::Download 0.03
+
+	- [Bug Fix] au WAP1.0 端末などで、サイズの多いファイルのダウンロード
+	  に失敗していたバグを修正。
+	  Sledge::MobileGate::Mobile::Download 0.03
+
+	- load_template の際、指定されたファイルが存在しなければ 空文字に
+      設定されてしまうのを止めました。
+      運用上は問題ないですが、テンプレートのセットミスなどのバグを追うとき
+      追いにくいため。
+      http://diary.godtomato.net/takefumi/2004/02/10.html#s03
+	  Sledge::MobileGate::Pages::Base; 0.03
+
+0.04 Tue Feb 10 21:03:51 2004
+	- パケット削減フィルターを導入しました。
+	  * 全角カタカナは半角カタカナに変換
+	  * 空白、改行のの連続は 改行1文字変換
+	  * 全角英数字は半角に
+
+	- [Bug Fix] なんか、ezの時絵文字が消えていたバグを修正。
+	  Sledge::MobileGate::Pictogram 0.03
+
+	- Vodafone の絵文字対応表を少し追加。
+	  Sledge::MobileGate::Pictogram::Vodafone 0.03
+
+0.03  Mon Dec 22 20:30:41 2003
+	- Ezweb の場合 WAP1 端末で コンテンツ内に .gif があったら .png に拡張子
+	  を変更するようにしました。
+	  Sledge::MobileGate::Filter 0.03
+
+0.02  Thu Dec 16 11:50:41 2003
+	- [New API] $self->mobile->output_content($content_data [MIME_TYPE])
+	  動的(sledge経由で)に画像や楽曲を出力する際に使用。
+	  download メソッドと同じように uri から動的に mime type を作成します。
+      Sledge::MobileGate::Mobile::Download 0.02
+
+    - [Bug Fix] ダウンロード時にWAP1端末が固まる場合があるバグを修正。
+	  ダウンロードが終了したとき、HDML(ではなくHTMLを出力）すると
+	  ダメっぽい。（バットノウハウ）
+	  この画面は端末に出力されないので、モジュールに直接書いています。
+      Sledge::MobileGate::Mobile::Download 0.02
+
+	- mobile オブジェクトは Project::Pages で作成するように変更。
+	  Sledge::MobileGate::Pages::Base 0.02
+
+	- Vodafone のパケット対応機種で無い場合、表示出来ない絵文字(OPQ系)を
+	  表示しないようにしました。
+	  Sledge::MobileGate::Pictogram 0.02
+
+	- Vodafoneの場合 istyle -> mode, accesskey -> directkey に変換するよう
+	  にしました。
+	  Sledge::MobileGate::Filter 0.02
+
+	- Vodafone の絵文字対応表を少し追加。
+	  Sledge::MobileGate::Pictogram::Vodafone 0.02
+
+0.01  Tue Dec  9 21:21:31 2003
+	- original version
