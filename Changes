@@ -1,7 +1,7 @@
 Revision history for Perl extension Sledge::MobileGate
 
 0.09 Fri Jan 28 16:32:58 2005
-	- 半角文字化け
+	- 半角フィルターによって、文字化けが起きることがあったのを修正した。
 	  Sledge::MobileGate::Filter 0.07
 
 0.08 Fri Sep 10 16:45:39 2004
