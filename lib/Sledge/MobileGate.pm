@@ -2,7 +2,7 @@ package Sledge::MobileGate;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.09';
+$VERSION = '0.10';
 
 1;
 __END__
@@ -108,8 +108,15 @@ L<HTTP::MobileAgent> のオブジェクトを返します。
 =item career
 
 アクセス端末の キャリア（i, ez, jという文字列）返します。
+が、これtypoでした。そのうち無くなる予定です。
 
   $self->mobile->career;
+
+=item carrier
+
+L<HTTP::MobileAgent> の carrier と同じ結果がを返します。
+
+  $self->mobile->carrier;
 
 =item download
 

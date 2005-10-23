@@ -16,6 +16,7 @@ __PACKAGE__->mk_ro_accessors(
 	'agent',    # HTTP::MobileAgent
 	'page',     # Sledge::Pages
 	'career',
+	'carrier',
 	'id',
 );
 
@@ -41,7 +42,8 @@ sub new {
 		$self->agent->is_j_phone ? "j"  : undef
 	);
 
-	$self->{id} = $self->_id($page);
+	$self->{carrier} = $self->agent->carrier;
+	$self->{id}      = $self->_id($page);
 
 	return $self;
 }

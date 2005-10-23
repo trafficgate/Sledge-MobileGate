@@ -1,5 +1,9 @@
 Revision history for Perl extension Sledge::MobileGate
 
+0.10 Sun Oct 23 14:12:07 2005
+	- career の typo があったので、とりあえず carrier メソッドを追加。
+	- Makefile.PL に必要とするモジュールの記述がなかったので追加。
+
 0.09 Fri Jan 28 16:32:58 2005
 	- 半角フィルターによって、文字化けが起きることがあったのを修正した。
 	  Sledge::MobileGate::Filter 0.07
