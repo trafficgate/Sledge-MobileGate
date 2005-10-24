@@ -2,7 +2,7 @@ package Sledge::MobileGate::Mobile;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.02';
+$VERSION = '0.03';
 
 use base qw(
 	Sledge::MobileGate::Mobile::Download
@@ -33,6 +33,7 @@ sub new {
 		page      => $page,
 		download  => {},
 		career    => "",
+		carrier   => "",
 		id        => "",
 	}, $class;
 

@@ -1,8 +1,13 @@
 Revision history for Perl extension Sledge::MobileGate
 
+0.11 Mon Oct 24 19:46:43 2005
+	- テンプレートを読み込む優先順位に携帯端末だったら? という .mobile を追加しました。
+	  Sledge::MobileGate::Pages::Base 0.04
+
 0.10 Sun Oct 23 14:12:07 2005
 	- career の typo があったので、とりあえず carrier メソッドを追加。
 	- Makefile.PL に必要とするモジュールの記述がなかったので追加。
+	  Sledge::MobileGate::Mobile 0.03
 
 0.09 Fri Jan 28 16:32:58 2005
 	- 半角フィルターによって、文字化けが起きることがあったのを修正した。

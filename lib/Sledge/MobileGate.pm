@@ -2,7 +2,7 @@ package Sledge::MobileGate;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.10';
+$VERSION = '0.11';
 
 1;
 __END__
@@ -76,6 +76,8 @@ Ezweb の場合 WAP1 端末で コンテンツ内に .gif があったら .png に拡張子
 
 $TMPL_PATH/$DIR/foo.html.ez
 
+$TMPL_PATH/$DIR/foo.html.mobile
+
 =item ディレクトリ
 
 $TMPL_PATH/ez/$DIR/foo.html
@@ -108,13 +110,14 @@ L<HTTP::MobileAgent> のオブジェクトを返します。
 =item career
 
 アクセス端末の キャリア（i, ez, jという文字列）返します。
-が、これtypoでした。そのうち無くなる予定です。
+が、これtypoでした。(恥)
 
   $self->mobile->career;
 
 =item carrier
 
 L<HTTP::MobileAgent> の carrier と同じ結果がを返します。
+career とは結果が異なるので注意。
 
   $self->mobile->carrier;
 

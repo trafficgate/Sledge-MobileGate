@@ -2,7 +2,7 @@ package Sledge::MobileGate::Pages::Base;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.03';
+$VERSION = '0.04';
 use base qw(Sledge::Pages::Base);
 
 __PACKAGE__->mk_accessors(
@@ -76,21 +76,31 @@ sub guess_filename {
     # foo.txt => $TMPL_PATH/$DIR/foo.txt
     my $dir = ($page =~ s,^/,,) ? '' : $self->tmpl_dirname . '/';
     my $suf = $page =~ /\./ ? '' : '.html';
-	my $career =  $self->r->param('_career') || $self->mobile->career();
+	my $career  = $self->r->param('_career')  ||    $self->mobile->career();
+	my $carrier = $self->r->param('_carrier') || lc $self->mobile->carrier();
 
 	#
     # $TMPL_PATH/$DIR/foo.html.ez
     # $TMPL_PATH/ez/$DIR/foo.html
 	#
 	my $c = $self->create_config;
-	for my $path (
-    	sprintf('%s/%s%s%s.%s',
-			$c->tmpl_path, $dir, $page, $suf, $career
-		),
-    	sprintf('%s/%s/%s%s%s',
-			$c->tmpl_path, $career, $dir, $page, $suf
-		),
-	) {
+	my @path;
+	if ($career) {
+		# career TYPO ÈÇ
+		push (@path, sprintf('%s/%s%s%s.%s', $c->tmpl_path, $dir, $page, $suf, $career));
+		push (@path, sprintf('%s/%s/%s%s%s', $c->tmpl_path, $career, $dir, $page, $suf));
+	}
+	if ($carrier) {
+		# carrier HTTP::MA ÈÇ
+		push (@path, sprintf('%s/%s%s%s.%s', $c->tmpl_path, $dir, $page, $suf, $carrier));
+		push (@path, sprintf('%s/%s/%s%s%s', $c->tmpl_path, $carrier, $dir, $page, $suf));
+	}
+	unless ($self->mobile->agent->is_non_mobile) {
+		# .mobile ÈÇ
+		push (@path, sprintf('%s/%s%s%s.%s', $c->tmpl_path, $dir, $page, $suf, 'mobile'));
+		push (@path, sprintf('%s/%s/%s%s%s', $c->tmpl_path, 'mobile', $dir, $page, $suf));
+	}
+	for my $path (@path) {
 		return $path if (-f $path);
 	}
 

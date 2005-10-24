@@ -24,11 +24,9 @@ DESCRIPTION
     機能を追加するモジュール群です。
 
   diapatch の追加
-
     アクセス端末ごとに、(i|ez|j)_dipatch_page が存在した場合 実行します。
 
   絵文字の処理
-
     入力された絵文字は自動的に、i-mode の場合 &#*****; の形式に変換します。
     vodafone の絵文字は i-mode
     に類する絵文字があった場合は、対応する&#*****;
@@ -44,7 +42,6 @@ DESCRIPTION
     その、エージェントで対応する絵文字が存在しない場合は、削除されます。
 
   HTMLの変更
-
     vodafone では HTML上の istyle -> mode 、accesskey -> directkey に変更
     されます。
 
@@ -57,12 +54,13 @@ DESCRIPTION
     空白、改行のの連続は 改行1文字変換、全角英数字は半角変換されます。
 
   テンプレート
-
     以下の優先順位で、各キャリアごとのテンプレートを検索し
     そのファイルがあれば、それを優先して使用。
 
     ファイルの末尾
     $TMPL_PATH/$DIR/foo.html.ez
+
+    $TMPL_PATH/$DIR/foo.html.mobile
 
     ディレクトリ
     $TMPL_PATH/ez/$DIR/foo.html
@@ -71,7 +69,6 @@ DESCRIPTION
     $TMPL_PATH/$DIR/foo.html
 
   mobile メソッドの追加
-
     mobile というメソッドを追加します。
 
     id  アクセス端末の端末固有ID(ez, vodafoneのみ)を返します。
@@ -79,7 +76,7 @@ DESCRIPTION
           $self->mobile->id;
 
     agent
-        the HTTP::MobileAgent manpage のオブジェクトを返します。
+        HTTP::MobileAgent のオブジェクトを返します。
 
           if ($self->mobile->agent->is_ezweb) {
               .....  
@@ -87,8 +84,15 @@ DESCRIPTION
 
     career
         アクセス端末の キャリア（i, ez, jという文字列）返します。
+        が、これtypoでした。(恥)
 
           $self->mobile->career;
+
+    carrier
+        HTTP::MobileAgent の carrier と同じ結果がを返します。 career
+        とは結果が異なるので注意。
+
+          $self->mobile->carrier;
 
     download
         各端末にあわせたダウンロードの処理を行います。 Content-Type は
@@ -96,8 +100,8 @@ DESCRIPTION
 
          /dl.cgi?sid=xxxx&file=aaaa.mld
 
-        などの用に使用できます。 判断出来なかった場合は、"application/x-up-
-        download"になります。
+        などの用に使用できます。
+        判断出来なかった場合は、"application/x-up-download"になります。
 
           $self->mobile->download($content_data, [MIME_TYPE]);
 
@@ -112,18 +116,14 @@ TODO
     vodafon の 絵文字
         vodafon の絵文字の対応表を完成させる。 patch 歓迎。
 
-        the section on
-        "/www.nttdocomo.co.jp/p_s/imode/tag/emoji/list.html#list1" in the
-        http: manpage, the section on "/www.dp.j-
-        phone.com/dp/tool_dl/web/picword_top.php" in the http: manpage
+        <http://www.nttdocomo.co.jp/p_s/imode/tag/emoji/list.html#list1>,
+        <http://www.dp.j-phone.com/dp/tool_dl/web/picword_top.php>
 
     ezweb の 絵文字
         ezweb の絵文字の対応表も作成する。 patch 歓迎。
 
-        the section on
-        "/www.nttdocomo.co.jp/p_s/imode/tag/emoji/list.html#list1" in the
-        http: manpage, the section on
-        "/www.au.kddi.com/ezfactory/tec/spec/3.html" in the http: manpage
+        <http://www.nttdocomo.co.jp/p_s/imode/tag/emoji/list.html#list1>,
+        <http://www.au.kddi.com/ezfactory/tec/spec/3.html>
 
         基本的にezゲートウエイがやってくれるが、メールや拡張絵文字に
         対応できるようになるかも。
@@ -138,5 +138,5 @@ AUTHOR
     under the same terms as Perl itself.
 
 SEE ALSO
-    the HTTP::MobileAgent manpage
+    HTTP::MobileAgent
 
