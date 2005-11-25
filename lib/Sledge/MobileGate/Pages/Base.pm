@@ -2,7 +2,7 @@ package Sledge::MobileGate::Pages::Base;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.04';
+$VERSION = '0.05';
 use base qw(Sledge::Pages::Base);
 
 __PACKAGE__->mk_accessors(
@@ -71,13 +71,15 @@ sub guess_filename {
 	my $self = shift;
 	my $page = shift;
 
+	my $mobile = (ref $self) ? $self->mobile : $self->create_mobile();
+
     # foo     => $TMPL_PATH/$DIR/foo.html
     # /foo    => $TMPL_PATH/foo.html
     # foo.txt => $TMPL_PATH/$DIR/foo.txt
     my $dir = ($page =~ s,^/,,) ? '' : $self->tmpl_dirname . '/';
     my $suf = $page =~ /\./ ? '' : '.html';
-	my $career  = $self->r->param('_career')  ||    $self->mobile->career();
-	my $carrier = $self->r->param('_carrier') || lc $self->mobile->carrier();
+	my $career  =    $mobile->career();
+	my $carrier = lc $mobile->carrier();
 
 	#
     # $TMPL_PATH/$DIR/foo.html.ez
@@ -95,7 +97,7 @@ sub guess_filename {
 		push (@path, sprintf('%s/%s%s%s.%s', $c->tmpl_path, $dir, $page, $suf, $carrier));
 		push (@path, sprintf('%s/%s/%s%s%s', $c->tmpl_path, $carrier, $dir, $page, $suf));
 	}
-	unless ($self->mobile->agent->is_non_mobile) {
+	unless ($mobile->agent->is_non_mobile) {
 		# .mobile ÈÇ
 		push (@path, sprintf('%s/%s%s%s.%s', $c->tmpl_path, $dir, $page, $suf, 'mobile'));
 		push (@path, sprintf('%s/%s/%s%s%s', $c->tmpl_path, 'mobile', $dir, $page, $suf));
