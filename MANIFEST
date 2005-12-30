@@ -1,7 +1,4 @@
 Changes
-MANIFEST
-Makefile.PL
-README
 lib/Sledge/MobileGate.pm
 lib/Sledge/MobileGate/Charset.pm
 lib/Sledge/MobileGate/Doc/FAQ.pod
@@ -14,5 +11,9 @@ lib/Sledge/MobileGate/Pages/CGI.pm
 lib/Sledge/MobileGate/Pages/Compat.pm
 lib/Sledge/MobileGate/Pictogram.pm
 lib/Sledge/MobileGate/Pictogram/Vodafone.pm
+Makefile.PL
+MANIFEST
+META.yml			Module meta-data (added by MakeMaker)
+README
 t/00_compile.t
-META.yml                                 Module meta-data (added by MakeMaker)
+t/01_filter.t

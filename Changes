@@ -1,5 +1,10 @@
 Revision history for Perl extension Sledge::MobileGate
 
+0.13 Fri Dec 30 16:32:10 2005
+	- 全角の<>"&が半角に変化され、HTMLとして認識されてしまう問題を修正。
+	  (TTのなどのhtmlフィルタを使用していても、XSSな脆弱性になります。)
+	  Sledge::MobileGate::Filter 0.08
+
 0.12 Fri Nov 25 17:12:21 2005
 	- Sledge::Dispatcher の絡みで、guess_filename はClassメソッドとしても動く場合があるっぽい対応。
 	  http://subtech.g.hatena.ne.jp/tokuhirom/20051120/1132499825

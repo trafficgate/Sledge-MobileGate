@@ -2,7 +2,7 @@ package Sledge::MobileGate::Filter;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.07';
+$VERSION = '0.08';
 
 use Jcode;
 
@@ -147,6 +147,15 @@ sub _filter_mail_pictogram {
 sub filter_hankaku {
 	my $self = shift;
 	my $content = shift;
+
+	# 全角の<>&"を半角にするとXSSなの。
+	# FIXME: パケット削減になっていない。いまどきはもう不要?
+	for ($content) {
+		s/\x81\x95/&amp;/g;
+		s/\x81\x83/&lt;/g;
+		s/\x81\x84/&gt;/g;
+		s/\x81\x68/&quot;/g,
+	}
 
 	$content = Jcode->new($content, 'sjis')->z2h->sjis;
 	$content =~ s/[\s\n\r]{2,}/\n/g;
