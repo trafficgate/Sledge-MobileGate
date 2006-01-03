@@ -1,7 +1,12 @@
 Revision history for Perl extension Sledge::MobileGate
 
+0.14 Tue Jan  3 10:57:55 2006
+	- 全角の記号は、つねに全角で表示するようにした。
+	  Sledge::MobileGate::Filter 0.09
+
 0.13 Fri Dec 30 16:32:10 2005
-	- 全角の<>"&が半角に変化され、HTMLとして認識されてしまう問題を修正。
+	- Lingua::JA::Regular がinstallされている場合、
+	  全角の<>"&が半角に変化され、HTMLとして認識されてしまう問題を修正。
 	  (TTのなどのhtmlフィルタを使用していても、XSSな脆弱性になります。)
 	  Sledge::MobileGate::Filter 0.08
 
