@@ -1,5 +1,10 @@
 Revision history for Perl extension Sledge::MobileGate
 
+0.15 Mon Jan 30 10:54:45 2006
+	- mobile->id でユーザIDがとれない場合、端末のシリアルナンバーを返すようにした。
+	  Sledge::MobileGate::Mobile 0.05
+	  (Thanks to FUSHIHARA, kan)
+
 0.14 Tue Jan  3 10:57:55 2006
 	- 全角の記号は、つねに全角で表示するようにした。
 	  Sledge::MobileGate::Filter 0.09

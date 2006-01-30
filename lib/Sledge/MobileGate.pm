@@ -2,7 +2,7 @@ package Sledge::MobileGate;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.14';
+$VERSION = '0.15';
 
 1;
 __END__
@@ -94,10 +94,11 @@ mobile というメソッドを追加します。
 
 =item id
 
-アクセス端末の端末固有ID(ez, vodafoneのみ)を返します。
+アクセスユーザの固有ID(ez, vodafoneのみ)を返します。
 
   $self->mobile->id;
 
+docomo, vodafone(ユーザIDがとれない場合)はアクセス端末の端末固有ID(シリアルナンバー)を返します。
 
 =item agent
 

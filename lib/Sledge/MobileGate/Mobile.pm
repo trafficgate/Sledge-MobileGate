@@ -2,7 +2,7 @@ package Sledge::MobileGate::Mobile;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.04';
+$VERSION = '0.05';
 
 use base qw(
 	Sledge::MobileGate::Mobile::Download
@@ -60,13 +60,20 @@ sub _id {
 	if (ref $page eq "") {
 		return undef
 	}
-	elsif ($self->agent->is_docomo or $self->agent->is_j_phone) {
-		return $page->r->header_in('x-jphone-uid');
+	elsif ($self->agent->is_docomo) {
+		 return $self->agent->serial_number;
 	}
 	elsif ($self->agent->is_ezweb) {
 		return $page->r->header_in('x-up-subno');
 	}
-
+	elsif ($self->agent->is_j_phone) {
+		if ($page->r->header_in('x-jphone-uid')) {
+			return $page->r->header_in('x-jphone-uid') 
+		}
+		else {
+		 	return $self->agent->serial_number;
+		}
+	}
 	return undef;
 }
 
