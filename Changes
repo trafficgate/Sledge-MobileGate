@@ -1,5 +1,10 @@
 Revision history for Perl extension Sledge::MobileGate
 
+0.16 Tue Jan 31 19:01:20 2006
+	- Vodafoneのときは*.gifときたら*.pngに変更。
+	  Sledge::MobileGate::Filter 0.10
+	  (Thanks to FUSHIHARA, kan)
+
 0.15 Mon Jan 30 10:54:45 2006
 	- mobile->id でユーザIDがとれない場合、端末のシリアルナンバーを返すようにした。
 	  Sledge::MobileGate::Mobile 0.05

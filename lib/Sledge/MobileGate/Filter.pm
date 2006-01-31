@@ -2,7 +2,7 @@ package Sledge::MobileGate::Filter;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.09';
+$VERSION = '0.10';
 
 use Jcode;
 
@@ -78,6 +78,10 @@ sub filter_vodafone {
 	#
 	s/accesskey\s*=\s*(["'])(\d)(["'])/directkey=$1$2$3/g;
 
+	#
+	# GIF画像を PNG 画像へ
+	#
+	s/src\s*=\s*(["'])(.+)\.gif(["'])/src=$1$2.png$3/g;
 
 	return $_;
 }
